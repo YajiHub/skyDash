@@ -13,7 +13,7 @@ include 'include/sidebar.php';
         <div class="row">
           <div class="col-12 col-xl-8 mb-4 mb-xl-0">
             <h3 class="font-weight-bold">Document Management</h3>
-            <h6 class="font-weight-normal mb-0">Welcome to your personal document archive</h6>
+            <h6 class="font-weight-normal mb-0">Welcome to your document archive directory</h6>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ include 'include/sidebar.php';
             <p class="mb-4">Image Files</p>
             <p class="fs-30 mb-2">
               <?php
-              // Placeholder for image count
+              // Placeholder for image count (combined png and jpg since mao ray want ni sir for image)
               echo "9";
               ?>
             </p>

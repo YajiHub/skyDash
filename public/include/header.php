@@ -12,6 +12,11 @@
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../images/favicon.png" />
+
+  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+
+
 </head>
 <body>
   <div class="container-scroller">
