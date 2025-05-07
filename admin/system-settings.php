@@ -43,9 +43,6 @@ include 'include/admin-sidebar.php';
                 <a class="nav-link" id="access-tab" data-toggle="tab" href="#access" role="tab" aria-controls="access" aria-selected="false">Access Levels</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="storage-tab" data-toggle="tab" href="#storage" role="tab" aria-controls="storage" aria-selected="false">Storage</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" id="backup-tab" data-toggle="tab" href="#backup" role="tab" aria-controls="backup" aria-selected="false">Backup & Restore</a>
               </li>
             </ul>
@@ -75,32 +72,6 @@ include 'include/admin-sidebar.php';
                     <div class="col-sm-9">
                       <input type="email" class="form-control" id="adminEmail" name="adminEmail" value="admin@example.com" required>
                       <small class="form-text text-muted">Used for system notifications and alerts.</small>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="fileTypeLimit" class="col-sm-3 col-form-label">Allowed File Types</label>
-                    <div class="col-sm-9">
-                      <select class="form-control select2-multiple" id="fileTypeLimit" name="fileTypes[]" multiple="multiple" required>
-                        <option value="pdf" selected>PDF</option>
-                        <option value="jpg" selected>JPG</option>
-                        <option value="png" selected>PNG</option>
-                        <option value="doc">DOC</option>
-                        <option value="docx">DOCX</option>
-                        <option value="xls">XLS</option>
-                        <option value="xlsx">XLSX</option>
-                        <option value="ppt">PPT</option>
-                        <option value="pptx">PPTX</option>
-                        <option value="txt">TXT</option>
-                      </select>
-                      <small class="form-text text-muted">Select the file types users are allowed to upload.</small>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="maxFileSize" class="col-sm-3 col-form-label">Max File Size (MB)</label>
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control" id="maxFileSize" name="maxFileSize" value="10" min="1" max="100" required>
                     </div>
                   </div>
                   
@@ -229,78 +200,6 @@ include 'include/admin-sidebar.php';
                     </tbody>
                   </table>
                 </div>
-              </div>
-              
-              <!-- Storage Settings -->
-              <div class="tab-pane fade" id="storage" role="tabpanel" aria-labelledby="storage-tab">
-                <form class="forms-sample" action="process-update-settings.php" method="post">
-                  <input type="hidden" name="setting_type" value="storage">
-                  
-                  <div class="form-group row">
-                    <label for="storageType" class="col-sm-3 col-form-label">Storage Type</label>
-                    <div class="col-sm-9">
-                      <select class="form-control" id="storageType" name="storageType">
-                        <option value="local" selected>Local Storage</option>
-                        <option value="cloud">Cloud Storage</option>
-                        <option value="hybrid">Hybrid (Local + Cloud)</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="storagePath" class="col-sm-3 col-form-label">Local Storage Path</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="storagePath" name="storagePath" value="/var/www/uploads" required>
-                      <small class="form-text text-muted">Absolute path to the storage directory.</small>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="diskQuota" class="col-sm-3 col-form-label">Default User Quota (MB)</label>
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control" id="diskQuota" name="diskQuota" value="100" min="10" required>
-                      <small class="form-text text-muted">Default storage quota for new users.</small>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="cloudProvider" class="col-sm-3 col-form-label">Cloud Provider</label>
-                    <div class="col-sm-9">
-                      <select class="form-control" id="cloudProvider" name="cloudProvider">
-                        <option value="none" selected>None</option>
-                        <option value="aws">Amazon S3</option>
-                        <option value="gcp">Google Cloud Storage</option>
-                        <option value="azure">Microsoft Azure Blob Storage</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="bucketName" class="col-sm-3 col-form-label">Bucket/Container Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="bucketName" name="bucketName" value="">
-                      <small class="form-text text-muted">For cloud storage only.</small>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="accessKey" class="col-sm-3 col-form-label">Access Key/ID</label>
-                    <div class="col-sm-9">
-                      <input type="password" class="form-control" id="accessKey" name="accessKey" value="">
-                      <small class="form-text text-muted">For cloud storage only.</small>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <label for="secretKey" class="col-sm-3 col-form-label">Secret Key</label>
-                    <div class="col-sm-9">
-                      <input type="password" class="form-control" id="secretKey" name="secretKey" value="">
-                      <small class="form-text text-muted">For cloud storage only.</small>
-                    </div>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-primary mr-2">Save Changes</button>
-                </form>
               </div>
               
               <!-- Backup & Restore -->
@@ -506,9 +405,6 @@ include 'include/admin-sidebar.php';
       var fileName = $(this).val().split('\\').pop();
       $(this).parent().find('.form-control').val(fileName);
     });
-    
-    // Initialize Select2 for multiple selections
-    $('.select2-multiple').select2();
     
     // Edit category
     $('.edit-category').on('click', function() {

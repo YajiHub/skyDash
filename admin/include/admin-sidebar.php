@@ -31,12 +31,6 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="access-logs.php">
-          <i class="icon-clock menu-icon"></i>
-          <span class="menu-title">Access Logs</span>
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="system-settings.php">
           <i class="icon-cog menu-icon"></i>
           <span class="menu-title">System Settings</span>

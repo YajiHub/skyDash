@@ -33,11 +33,11 @@ $document = [
 
 // Access history - would be fetched from database
 $access_history = [
-  ['John Doe', 'Upload', '2023-06-01 14:32:45', '192.168.1.45'],
-  ['Maria Garcia', 'View', '2023-06-01 15:18:22', '192.168.1.87'],
-  ['John Doe', 'Edit Metadata', '2023-06-02 09:45:07', '192.168.1.45'],
-  ['Ahmed Khan', 'View', '2023-06-03 11:10:15', '192.168.1.22'],
-  ['Lisa Wong', 'Download', '2023-06-04 16:55:33', '192.168.1.67']
+  ['John Doe', 'Upload', '2023-06-01 14:32:45'],
+  ['Maria Garcia', 'View', '2023-06-01 15:18:22'],
+  ['John Doe', 'Edit Metadata', '2023-06-02 09:45:07'],
+  ['Ahmed Khan', 'View', '2023-06-03 11:10:15'],
+  ['Lisa Wong', 'Download', '2023-06-04 16:55:33']
 ];
 ?>
 
@@ -62,6 +62,9 @@ $access_history = [
             <div class="justify-content-end d-flex">
               <a href="../public/download.php?id=<?php echo $doc_id; ?>" class="btn btn-primary mr-2">
                 <i class="ti-download mr-1"></i> Download
+              </a>
+              <a href="document-access-logs.php?id=<?php echo $doc_id; ?>" class="btn btn-info mr-2">
+                <i class="ti-list mr-1"></i> Access Logs
               </a>
               <?php if ($document['status'] == 'Active'): ?>
               <button class="btn btn-warning mr-2 flag-document" data-id="<?php echo $doc_id; ?>">
@@ -143,16 +146,15 @@ $access_history = [
                   }
                   ?>
                 </div>
-              </div
               </div>
             </div>
           </div>
         </div>
         
-        <!-- Access History -->
+        <!-- Recent Access History -->
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Access History</h4>
+            <h4 class="card-title">Recent Access</h4>
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
@@ -160,7 +162,6 @@ $access_history = [
                     <th>User</th>
                     <th>Action</th>
                     <th>Timestamp</th>
-                    <th>IP</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -170,12 +171,16 @@ $access_history = [
                     echo '<td>' . $access[0] . '</td>';
                     echo '<td>' . $access[1] . '</td>';
                     echo '<td>' . $access[2] . '</td>';
-                    echo '<td>' . $access[3] . '</td>';
                     echo '</tr>';
                   }
                   ?>
                 </tbody>
               </table>
+            </div>
+            <div class="text-center mt-3">
+              <a href="document-access-logs.php?id=<?php echo $doc_id; ?>" class="btn btn-outline-primary btn-sm">
+                View Full Access History
+              </a>
             </div>
           </div>
         </div>
