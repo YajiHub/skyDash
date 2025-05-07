@@ -2,14 +2,14 @@
 // File: admin/manage-users.php
 session_start();
 
-// Check if user is logged in and is admin
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: ../public/login.php");
-    exit;
-}
+// // Check if user is logged in and is admin
+// if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+//     header("Location: ../public/login.php");
+//     exit;
+// }
 
-include '../public/include/header.php';
-include '../public/include/admin-sidebar.php';
+include 'include/header.php';
+include 'include/admin-sidebar.php';
 ?>
 
 <!-- Main Panel -->

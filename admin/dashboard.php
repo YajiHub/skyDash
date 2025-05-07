@@ -1,5 +1,5 @@
 <?php
-// // File: admin/dashboard.php
+// File: admin/dashboard.php
 // session_start();
 
 // // Check if user is logged in and is admin
@@ -8,8 +8,8 @@
 //     exit;
 // }
 
-include '../public/include/header.php';
-include '../public/include/admin-sidebar.php';
+include 'include/header.php';
+include 'include/admin-sidebar.php';
 ?>
 
 <!-- Main Panel -->
@@ -197,5 +197,5 @@ var trendsChart = new Chart(trendsCtx, {
 </script>
 
 <?php
-include '../public/include/footer.php';
+include 'include/footer.php';
 ?>

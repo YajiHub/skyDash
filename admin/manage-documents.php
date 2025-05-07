@@ -2,14 +2,14 @@
 // File: admin/manage-documents.php
 session_start();
 
-// Check if user is logged in and is admin
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: ../public/login.php");
-    exit;
-}
+// // Check if user is logged in and is admin
+// if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+//     header("Location: ../public/login.php");
+//     exit;
+// }
 
-include '../public/include/header.php';
-include '../public/include/admin-sidebar.php';
+include 'include/header.php';
+include 'include/admin-sidebar.php';
 ?>
 
 <!-- Main Panel -->
@@ -232,3 +232,88 @@ include '../public/include/admin-sidebar.php';
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Delete Document Modal -->
+  <div class="modal fade" id="deleteDocumentModal" tabindex="-1" role="dialog" aria-labelledby="deleteDocumentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteDocumentModalLabel">Delete Document</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this document?</p>
+          <form id="deleteDocumentForm" action="process-delete-document.php" method="post">
+            <input type="hidden" id="deleteDocumentId" name="documentId" value="">
+            <div class="form-group">
+              <label for="deleteReason">Reason for Deletion</label>
+              <textarea class="form-control" id="deleteReason" name="deleteReason" rows="3" required></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-danger">Delete Document</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  $(document).ready(function() {
+    // Flag document
+    $('.flag-document').on('click', function() {
+      var documentId = $(this).data('id');
+      $('#documentId').val(documentId);
+      $('#flagDocumentModal').modal('show');
+    });
+    
+    // Delete document
+    $('.delete-document').on('click', function() {
+      var documentId = $(this).data('id');
+      $('#deleteDocumentId').val(documentId);
+      $('#deleteDocumentModal').modal('show');
+    });
+    
+    // Unflag document
+    $('.unflag-document').on('click', function() {
+      if (confirm('Are you sure you want to remove the flag from this document?')) {
+        var documentId = $(this).data('id');
+        // In a real application, you would make an AJAX call to update the status
+        console.log('Unflagging document ' + documentId);
+        // Reload page or update UI
+      }
+    });
+    
+    // Restore document
+    $('.restore-document').on('click', function() {
+      if (confirm('Are you sure you want to restore this document?')) {
+        var documentId = $(this).data('id');
+        // In a real application, you would make an AJAX call to update the status
+        console.log('Restoring document ' + documentId);
+        // Reload page or update UI
+      }
+    });
+
+    // Initialize DataTable
+    $('#documents-table').DataTable({
+      "pageLength": 10,
+      "lengthMenu": [10, 25, 50, 100],
+      "order": [[ 0, "desc" ]],
+      "language": {
+        "search": "Search:",
+        "lengthMenu": "Show _MENU_ entries per page",
+        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+        "infoEmpty": "Showing 0 to 0 of 0 entries",
+        "infoFiltered": "(filtered from _MAX_ total entries)"
+      }
+    });
+  });
+</script>
+
+<?php
+include 'include/footer.php';
+?>
